@@ -1,0 +1,44 @@
+﻿@model IEnumerable<biuro.Oferta>
+
+@{
+    ViewBag.Title = "Aktualne oferty";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Oferty</h2>
+
+<p>
+    @{
+        if (ViewContext.HttpContext.User.IsInRole("Admin"))
+        {
+            @Html.ActionLink("Stwórz nową ofertę", "Create")
+        }
+    }
+</p>
+
+@foreach (var item in Model)
+{
+    <did class="oferta">
+        <did class="lewy">
+            <div class="miejsce">
+                Miejsce docelowe: @Html.DisplayFor(modelItem => item.Miejsce.Nazwa) <br />
+                @Html.DisplayFor(modelItem => item.Miejsce.Opis)<br />
+                Punkt wyjazdu: @Html.DisplayFor(modelItem => item.PunktWyjazdu.Adres) <br />
+            </div>
+            <div class="program">
+                Program oferty:<br />
+                @Html.DisplayFor(modelItem => item.Program.Opis)
+            </div>
+        </did>
+        <did class="prawy">
+            <span class="cena">
+                @Html.DisplayFor(modelItem => item.Cena) zł
+            </span><br />
+            Data wyjazdu: @Html.DisplayFor(modelItem => item.DataWyjazdu) <br />
+            Data powrotu: @Html.DisplayFor(modelItem => item.DataPowrotu) <br />
+            @Html.ActionLink("Edytuj", "Edit", new { id = item.ID }) |
+            @Html.ActionLink("Szczegóły", "Details", new { id = item.ID }) |
+            @Html.ActionLink("Usuń", "Delete", new { id = item.ID })
+        </did>
+    </did>
+}

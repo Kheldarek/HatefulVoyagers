@@ -1,0 +1,58 @@
+﻿@model biuro.Oferta
+
+@{
+    ViewBag.Title = "Szczegóły oferty";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Szczegóły oferty</h2>
+
+<fieldset>
+    <legend>Oferta</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Cena)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Cena)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DataWyjazdu)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DataWyjazdu)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.DataPowrotu)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.DataPowrotu)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Program.Opis)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Program.Opis)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PunktWyjazdu.Adres)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PunktWyjazdu.Adres)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Miejsce.Nazwa)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Miejsce.Nazwa)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edytuj", "Edit", new { id=Model.ID }) |
+    @Html.ActionLink("Powróć do listy", "Index")
+</p>

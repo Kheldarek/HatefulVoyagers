@@ -1,0 +1,34 @@
+﻿@model biuro.Program
+
+@{
+    ViewBag.Title = "Stwórz nowy program";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Tworzenie nowego programu</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Program</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Opis)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Opis, new { Cols = 50, Rows = 10 })
+            @Html.ValidationMessageFor(model => model.Opis)
+        </div>
+
+        <p>
+            <input type="submit" value="Stwórz" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Powróć do listy", "Index")
+</div>

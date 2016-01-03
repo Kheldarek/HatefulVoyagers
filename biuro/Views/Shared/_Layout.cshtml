@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title</title>
+    <link href="@Url.Content("~/Content/styl.css")" rel="stylesheet" type="text/css" />
+    <script src="@Url.Content("~/Content/skrypty.js")"></script>
+</head>
+<body>
+    <div id="main" class="panel">
+        <div class="panel line0">
+            <div id="top">
+                @{
+                    if (ViewContext.HttpContext.User.IsInRole("Admin"))
+                    {
+                    <div class="menu line0" id="menu_bottom">
+                        <ul>
+                            <li>@Html.ActionLink("Miejsca", "Index", "Miejsca")</li>
+                            <li>@Html.ActionLink("Programy", "Index", "Programy")</li>
+                            <li>@Html.ActionLink("Punkty wyjazdu", "Index", "PunktyWyjazdu")</li>
+                        </ul>
+                    </div>
+                    }
+                }
+                <div class="menu line0" id="menu_top">
+                    <ul>
+                        <li>@Html.ActionLink("Strona główna", "Index", "Home")</li>
+                        <li>@Html.ActionLink("Oferty", "Index", "Oferty")</li>
+                        @{
+                            if (ViewContext.HttpContext.User.Identity.IsAuthenticated)
+                            {
+                            <li>@Html.ActionLink("Wyloguj", "Logout", "Account", new { ReturnUrl = Request.Url.AbsolutePath }, null)</li>
+                            }
+                            else {
+                            <li>@Html.ActionLink("Logowanie", "Login", "Account")</li>
+                            }
+                        }
+                    </ul>
+                </div>
+            </div>
+            <div id="content">
+                @RenderBody()
+                @Scripts.Render("~/bundles/jquery")
+                @RenderSection("scripts", required: false)
+            </div>
+            <div id="footer">
+                <span>
+                    Projekt biura podróży, Politechnika Poznańska 2015<br />
+                    Wydział Elektryczny, Informatyka, grupa I2-1.<br />
+                    Piotr Sęndrowski, Sebastian Szneider.
+                </span>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

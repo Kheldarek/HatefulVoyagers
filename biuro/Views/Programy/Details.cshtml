@@ -1,0 +1,23 @@
+﻿@model biuro.Program
+
+@{
+    ViewBag.Title = "Szczegóły programu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Szczegóły programu</h2>
+
+<fieldset>
+    <legend>Program</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Opis)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Opis)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edytuj", "Edit", new { id=Model.ID }) |
+    @Html.ActionLink("Powróć do listy", "Index")
+</p>

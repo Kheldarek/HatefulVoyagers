@@ -1,0 +1,700 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="BiuroPodrozy.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.6" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="BiuroPodrozyStoreContainer">
+    <EntitySet Name="OsobyTowarzyszaceSet" EntityType="BiuroPodrozy.Store.OsobyTowarzyszaceSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="KlientSet" EntityType="BiuroPodrozy.Store.KlientSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ProgramSet" EntityType="BiuroPodrozy.Store.ProgramSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PunktWyjazduSet" EntityType="BiuroPodrozy.Store.PunktWyjazduSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="RezerwacjeSet" EntityType="BiuroPodrozy.Store.RezerwacjeSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="OfertaSet" EntityType="BiuroPodrozy.Store.OfertaSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="MiejsceSet" EntityType="BiuroPodrozy.Store.MiejsceSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="NoclegSet" EntityType="BiuroPodrozy.Store.NoclegSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="PokojeSet" EntityType="BiuroPodrozy.Store.PokojeSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="UzytkownikSet" EntityType="BiuroPodrozy.Store.UzytkownikSet" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="OsobyTowarzyszaceRezerwacje" Association="BiuroPodrozy.Store.OsobyTowarzyszaceRezerwacje">
+      <End Role="OsobyTowarzyszace" EntitySet="OsobyTowarzyszaceSet" />
+      <End Role="Rezerwacje" EntitySet="RezerwacjeSet" />
+    </AssociationSet>
+    <AssociationSet Name="RezerwacjeKlient" Association="BiuroPodrozy.Store.RezerwacjeKlient">
+      <End Role="Rezerwacje" EntitySet="RezerwacjeSet" />
+      <End Role="Klient" EntitySet="KlientSet" />
+    </AssociationSet>
+    <AssociationSet Name="RezerwacjePokoje" Association="BiuroPodrozy.Store.RezerwacjePokoje">
+      <End Role="Rezerwacje" EntitySet="RezerwacjeSet" />
+      <End Role="Pokoje" EntitySet="PokojeSet" />
+    </AssociationSet>
+    <AssociationSet Name="RezerwacjeOferta" Association="BiuroPodrozy.Store.RezerwacjeOferta">
+      <End Role="Rezerwacje" EntitySet="RezerwacjeSet" />
+      <End Role="Oferta" EntitySet="OfertaSet" />
+    </AssociationSet>
+    <AssociationSet Name="ProgramOferta" Association="BiuroPodrozy.Store.ProgramOferta">
+      <End Role="Program" EntitySet="ProgramSet" />
+      <End Role="Oferta" EntitySet="OfertaSet" />
+    </AssociationSet>
+    <AssociationSet Name="PunktWyjazduOferta" Association="BiuroPodrozy.Store.PunktWyjazduOferta">
+      <End Role="PunktWyjazdu" EntitySet="PunktWyjazduSet" />
+      <End Role="Oferta" EntitySet="OfertaSet" />
+    </AssociationSet>
+    <AssociationSet Name="MiejsceOferta" Association="BiuroPodrozy.Store.MiejsceOferta">
+      <End Role="Miejsce" EntitySet="MiejsceSet" />
+      <End Role="Oferta" EntitySet="OfertaSet" />
+    </AssociationSet>
+    <AssociationSet Name="MiejsceNocleg" Association="BiuroPodrozy.Store.MiejsceNocleg">
+      <End Role="Miejsce" EntitySet="MiejsceSet" />
+      <End Role="Nocleg" EntitySet="NoclegSet" />
+    </AssociationSet>
+    <AssociationSet Name="NoclegPokoje" Association="BiuroPodrozy.Store.NoclegPokoje">
+      <End Role="Nocleg" EntitySet="NoclegSet" />
+      <End Role="Pokoje" EntitySet="PokojeSet" />
+    </AssociationSet>
+    <AssociationSet Name="UzytkownikKlient" Association="BiuroPodrozy.Store.UzytkownikKlient">
+      <End Role="Uzytkownik" EntitySet="UzytkownikSet" />
+      <End Role="Klient" EntitySet="KlientSet" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="OsobyTowarzyszaceSet">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Imie" Type="varchar" Nullable="false" MaxLength="15" />
+    <Property Name="Nazwisko" Type="varchar" Nullable="false" MaxLength="40" />
+    <Property Name="DataUrodzenia" Type="datetime" Nullable="false" />
+    <Property Name="RezerwacjeID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="KlientSet">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Imie" Type="varchar" Nullable="false" MaxLength="15" />
+    <Property Name="Nazwisko" Type="varchar" Nullable="false" MaxLength="40" />
+    <Property Name="Adres" Type="varchar" Nullable="false" MaxLength="70" />
+    <Property Name="DataUrodzenia" Type="datetime" Nullable="false" />
+    <Property Name="Telefon" Type="varchar" Nullable="false" MaxLength="15" />
+    <Property Name="Email" Type="varchar" Nullable="true" MaxLength="40" />
+    <Property Name="NumerDowodu" Type="varchar" Nullable="false" MaxLength="30" />
+    <Property Name="Uzytkownik_ID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProgramSet">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Opis" Type="varchar" Nullable="false" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="PunktWyjazduSet">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Adres" Type="varchar" Nullable="false" MaxLength="70" />
+  </EntityType>
+  <EntityType Name="RezerwacjeSet">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="KlientID" Type="int" Nullable="false" />
+    <Property Name="PokojeID" Type="int" Nullable="false" />
+    <Property Name="OfertaID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OfertaSet">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Cena" Type="decimal" Nullable="false" Precision="9" Scale="2" />
+    <Property Name="DataWyjazdu" Type="datetime" Nullable="false" />
+    <Property Name="DataPowrotu" Type="datetime" Nullable="false" />
+    <Property Name="ProgramID" Type="int" Nullable="false" />
+    <Property Name="PunktWyjazduID" Type="int" Nullable="false" />
+    <Property Name="MiejsceID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MiejsceSet">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Nazwa" Type="varchar" Nullable="false" MaxLength="30" />
+    <Property Name="Opis" Type="varchar" Nullable="false" MaxLength="500" />
+  </EntityType>
+  <EntityType Name="NoclegSet">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Adres" Type="varchar" Nullable="false" MaxLength="70" />
+    <Property Name="Standard" Type="varchar" Nullable="false" MaxLength="150" />
+    <Property Name="MiejsceID" Type="int" Nullable="false" />
+    <Property Name="MiejsceID1" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="PokojeSet">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Dostepny" Type="bool" Nullable="false" />
+    <Property Name="LiczbaMiejsc" Type="smallint" Nullable="false" />
+    <Property Name="NumerPokoju" Type="smallint" Nullable="false" />
+    <Property Name="NoclegID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="UzytkownikSet">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Rola" Type="smallint" Nullable="false" DefaultValue="0" />
+    <Property Name="Login" Type="varchar" Nullable="false" MaxLength="50" />
+    <Property Name="Haslo" Type="varchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <Association Name="OsobyTowarzyszaceRezerwacje">
+    <End Role="OsobyTowarzyszace" Type="BiuroPodrozy.Store.OsobyTowarzyszaceSet" Multiplicity="*" />
+    <End Role="Rezerwacje" Type="BiuroPodrozy.Store.RezerwacjeSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Rezerwacje">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="OsobyTowarzyszace">
+        <PropertyRef Name="RezerwacjeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RezerwacjeKlient">
+    <End Role="Rezerwacje" Type="BiuroPodrozy.Store.RezerwacjeSet" Multiplicity="*" />
+    <End Role="Klient" Type="BiuroPodrozy.Store.KlientSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Klient">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Rezerwacje">
+        <PropertyRef Name="KlientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RezerwacjePokoje">
+    <End Role="Rezerwacje" Type="BiuroPodrozy.Store.RezerwacjeSet" Multiplicity="*" />
+    <End Role="Pokoje" Type="BiuroPodrozy.Store.PokojeSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Pokoje">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Rezerwacje">
+        <PropertyRef Name="PokojeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="RezerwacjeOferta">
+    <End Role="Rezerwacje" Type="BiuroPodrozy.Store.RezerwacjeSet" Multiplicity="*" />
+    <End Role="Oferta" Type="BiuroPodrozy.Store.OfertaSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Oferta">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Rezerwacje">
+        <PropertyRef Name="OfertaID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="ProgramOferta">
+    <End Role="Program" Type="BiuroPodrozy.Store.ProgramSet" Multiplicity="1" />
+    <End Role="Oferta" Type="BiuroPodrozy.Store.OfertaSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Program">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Oferta">
+        <PropertyRef Name="ProgramID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="PunktWyjazduOferta">
+    <End Role="PunktWyjazdu" Type="BiuroPodrozy.Store.PunktWyjazduSet" Multiplicity="1" />
+    <End Role="Oferta" Type="BiuroPodrozy.Store.OfertaSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PunktWyjazdu">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Oferta">
+        <PropertyRef Name="PunktWyjazduID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MiejsceOferta">
+    <End Role="Miejsce" Type="BiuroPodrozy.Store.MiejsceSet" Multiplicity="1" />
+    <End Role="Oferta" Type="BiuroPodrozy.Store.OfertaSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Miejsce">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Oferta">
+        <PropertyRef Name="MiejsceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MiejsceNocleg">
+    <End Role="Miejsce" Type="BiuroPodrozy.Store.MiejsceSet" Multiplicity="1" />
+    <End Role="Nocleg" Type="BiuroPodrozy.Store.NoclegSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Miejsce">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Nocleg">
+        <PropertyRef Name="MiejsceID1" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="NoclegPokoje">
+    <End Role="Nocleg" Type="BiuroPodrozy.Store.NoclegSet" Multiplicity="1" />
+    <End Role="Pokoje" Type="BiuroPodrozy.Store.PokojeSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Nocleg">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Pokoje">
+        <PropertyRef Name="NoclegID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="UzytkownikKlient">
+    <End Role="Uzytkownik" Type="BiuroPodrozy.Store.UzytkownikSet" Multiplicity="1" />
+    <End Role="Klient" Type="BiuroPodrozy.Store.KlientSet" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Uzytkownik">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Klient">
+        <PropertyRef Name="Uzytkownik_ID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema xmlns="http://schemas.microsoft.com/ado/2009/11/edm" xmlns:cg="http://schemas.microsoft.com/ado/2006/04/codegeneration" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" Namespace="BiuroPodrozy" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" annotation:UseStrongSpatialTypes="false">
+        <EntityContainer Name="BiuroPodrozyContainer" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="OsobyTowarzyszaceSet" EntityType="BiuroPodrozy.OsobyTowarzyszace" />
+          <EntitySet Name="KlientSet" EntityType="BiuroPodrozy.Klient" />
+          <EntitySet Name="ProgramSet" EntityType="BiuroPodrozy.Program" />
+          <EntitySet Name="PunktWyjazduSet" EntityType="BiuroPodrozy.PunktWyjazdu" />
+          <EntitySet Name="RezerwacjeSet" EntityType="BiuroPodrozy.Rezerwacje" />
+          <EntitySet Name="OfertaSet" EntityType="BiuroPodrozy.Oferta" />
+          <EntitySet Name="MiejsceSet" EntityType="BiuroPodrozy.Miejsce" />
+          <EntitySet Name="NoclegSet" EntityType="BiuroPodrozy.Nocleg" />
+          <EntitySet Name="PokojeSet" EntityType="BiuroPodrozy.Pokoje" />
+          <AssociationSet Name="OsobyTowarzyszaceRezerwacje" Association="BiuroPodrozy.OsobyTowarzyszaceRezerwacje">
+            <End Role="OsobyTowarzyszace" EntitySet="OsobyTowarzyszaceSet" />
+            <End Role="Rezerwacje" EntitySet="RezerwacjeSet" />
+          </AssociationSet>
+          <AssociationSet Name="RezerwacjeKlient" Association="BiuroPodrozy.RezerwacjeKlient">
+            <End Role="Rezerwacje" EntitySet="RezerwacjeSet" />
+            <End Role="Klient" EntitySet="KlientSet" />
+          </AssociationSet>
+          <AssociationSet Name="RezerwacjePokoje" Association="BiuroPodrozy.RezerwacjePokoje">
+            <End Role="Rezerwacje" EntitySet="RezerwacjeSet" />
+            <End Role="Pokoje" EntitySet="PokojeSet" />
+          </AssociationSet>
+          <AssociationSet Name="RezerwacjeOferta" Association="BiuroPodrozy.RezerwacjeOferta">
+            <End Role="Rezerwacje" EntitySet="RezerwacjeSet" />
+            <End Role="Oferta" EntitySet="OfertaSet" />
+          </AssociationSet>
+          <AssociationSet Name="ProgramOferta" Association="BiuroPodrozy.ProgramOferta">
+            <End Role="Program" EntitySet="ProgramSet" />
+            <End Role="Oferta" EntitySet="OfertaSet" />
+          </AssociationSet>
+          <AssociationSet Name="PunktWyjazduOferta" Association="BiuroPodrozy.PunktWyjazduOferta">
+            <End Role="PunktWyjazdu" EntitySet="PunktWyjazduSet" />
+            <End Role="Oferta" EntitySet="OfertaSet" />
+          </AssociationSet>
+          <AssociationSet Name="MiejsceOferta" Association="BiuroPodrozy.MiejsceOferta">
+            <End Role="Miejsce" EntitySet="MiejsceSet" />
+            <End Role="Oferta" EntitySet="OfertaSet" />
+          </AssociationSet>
+          <AssociationSet Name="MiejsceNocleg" Association="BiuroPodrozy.MiejsceNocleg">
+            <End Role="Miejsce" EntitySet="MiejsceSet" />
+            <End Role="Nocleg" EntitySet="NoclegSet" />
+          </AssociationSet>
+          <AssociationSet Name="NoclegPokoje" Association="BiuroPodrozy.NoclegPokoje">
+            <End Role="Nocleg" EntitySet="NoclegSet" />
+            <End Role="Pokoje" EntitySet="PokojeSet" />
+          </AssociationSet>
+          <EntitySet Name="UzytkownikSet" EntityType="BiuroPodrozy.Uzytkownik" />
+          <AssociationSet Name="UzytkownikKlient" Association="BiuroPodrozy.UzytkownikKlient">
+            <End Role="Uzytkownik" EntitySet="UzytkownikSet" />
+            <End Role="Klient" EntitySet="KlientSet" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="OsobyTowarzyszace">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Imie" Type="String" Nullable="false" MaxLength="15" />
+          <Property Name="Nazwisko" Type="String" Nullable="false" MaxLength="40" />
+          <Property Name="DataUrodzenia" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Rezerwacje" Relationship="BiuroPodrozy.OsobyTowarzyszaceRezerwacje" FromRole="OsobyTowarzyszace" ToRole="Rezerwacje" />
+          <Property Name="RezerwacjeID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Klient">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Imie" Type="String" Nullable="false" MaxLength="15" />
+          <Property Name="Nazwisko" Type="String" Nullable="false" MaxLength="40" />
+          <Property Name="Adres" Type="String" Nullable="false" MaxLength="70" />
+          <Property Name="DataUrodzenia" Type="DateTime" Nullable="false" />
+          <Property Name="Telefon" Type="String" Nullable="false" MaxLength="15" />
+          <Property Name="Email" Type="String" Nullable="true" MaxLength="40" />
+          <Property Name="NumerDowodu" Type="String" Nullable="false" MaxLength="30" />
+          <NavigationProperty Name="Rezerwacje" Relationship="BiuroPodrozy.RezerwacjeKlient" FromRole="Klient" ToRole="Rezerwacje" />
+          <NavigationProperty Name="Uzytkownik" Relationship="BiuroPodrozy.UzytkownikKlient" FromRole="Klient" ToRole="Uzytkownik" />
+        </EntityType>
+        <EntityType Name="Program">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Opis" Type="String" Nullable="false" MaxLength="500" />
+          <NavigationProperty Name="Oferta" Relationship="BiuroPodrozy.ProgramOferta" FromRole="Program" ToRole="Oferta" />
+        </EntityType>
+        <EntityType Name="PunktWyjazdu">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Adres" Type="String" Nullable="false" MaxLength="70" />
+          <NavigationProperty Name="Oferta" Relationship="BiuroPodrozy.PunktWyjazduOferta" FromRole="PunktWyjazdu" ToRole="Oferta" />
+        </EntityType>
+        <EntityType Name="Rezerwacje">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="OsobyTowarzyszace" Relationship="BiuroPodrozy.OsobyTowarzyszaceRezerwacje" FromRole="Rezerwacje" ToRole="OsobyTowarzyszace" />
+          <NavigationProperty Name="Klient" Relationship="BiuroPodrozy.RezerwacjeKlient" FromRole="Rezerwacje" ToRole="Klient" />
+          <Property Name="KlientID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Pokoje" Relationship="BiuroPodrozy.RezerwacjePokoje" FromRole="Rezerwacje" ToRole="Pokoje" />
+          <Property Name="PokojeID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Oferta" Relationship="BiuroPodrozy.RezerwacjeOferta" FromRole="Rezerwacje" ToRole="Oferta" />
+          <Property Name="OfertaID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Oferta">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cena" Type="Decimal" Nullable="false" Precision="9" Scale="2" />
+          <Property Name="DataWyjazdu" Type="DateTime" Nullable="false" />
+          <Property Name="DataPowrotu" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="Rezerwacje" Relationship="BiuroPodrozy.RezerwacjeOferta" FromRole="Oferta" ToRole="Rezerwacje" />
+          <NavigationProperty Name="Program" Relationship="BiuroPodrozy.ProgramOferta" FromRole="Oferta" ToRole="Program" />
+          <Property Name="ProgramID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="PunktWyjazdu" Relationship="BiuroPodrozy.PunktWyjazduOferta" FromRole="Oferta" ToRole="PunktWyjazdu" />
+          <Property Name="PunktWyjazduID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Miejsce" Relationship="BiuroPodrozy.MiejsceOferta" FromRole="Oferta" ToRole="Miejsce" />
+          <Property Name="MiejsceID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Miejsce">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nazwa" Type="String" Nullable="false" MaxLength="30" />
+          <Property Name="Opis" Type="String" Nullable="false" MaxLength="500" />
+          <NavigationProperty Name="Oferta" Relationship="BiuroPodrozy.MiejsceOferta" FromRole="Miejsce" ToRole="Oferta" />
+          <NavigationProperty Name="Nocleg" Relationship="BiuroPodrozy.MiejsceNocleg" FromRole="Miejsce" ToRole="Nocleg" />
+        </EntityType>
+        <EntityType Name="Nocleg">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Adres" Type="String" Nullable="false" MaxLength="70" />
+          <Property Name="Standard" Type="String" Nullable="false" MaxLength="150" />
+          <Property Name="MiejsceID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Miejsce" Relationship="BiuroPodrozy.MiejsceNocleg" FromRole="Nocleg" ToRole="Miejsce" />
+          <Property Name="MiejsceID1" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Pokoje" Relationship="BiuroPodrozy.NoclegPokoje" FromRole="Nocleg" ToRole="Pokoje" />
+        </EntityType>
+        <EntityType Name="Pokoje">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Dostepny" Type="Boolean" Nullable="false" />
+          <Property Name="LiczbaMiejsc" Type="Int16" Nullable="false" />
+          <Property Name="NumerPokoju" Type="Int16" Nullable="false" />
+          <NavigationProperty Name="Rezerwacje" Relationship="BiuroPodrozy.RezerwacjePokoje" FromRole="Pokoje" ToRole="Rezerwacje" />
+          <NavigationProperty Name="Nocleg" Relationship="BiuroPodrozy.NoclegPokoje" FromRole="Pokoje" ToRole="Nocleg" />
+          <Property Name="NoclegID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="OsobyTowarzyszaceRezerwacje">
+          <End Type="BiuroPodrozy.OsobyTowarzyszace" Role="OsobyTowarzyszace" Multiplicity="*" />
+          <End Type="BiuroPodrozy.Rezerwacje" Role="Rezerwacje" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Rezerwacje">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="OsobyTowarzyszace">
+              <PropertyRef Name="RezerwacjeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RezerwacjeKlient">
+          <End Type="BiuroPodrozy.Rezerwacje" Role="Rezerwacje" Multiplicity="*" />
+          <End Type="BiuroPodrozy.Klient" Role="Klient" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Klient">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Rezerwacje">
+              <PropertyRef Name="KlientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RezerwacjePokoje">
+          <End Type="BiuroPodrozy.Rezerwacje" Role="Rezerwacje" Multiplicity="*" />
+          <End Type="BiuroPodrozy.Pokoje" Role="Pokoje" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Pokoje">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Rezerwacje">
+              <PropertyRef Name="PokojeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="RezerwacjeOferta">
+          <End Type="BiuroPodrozy.Rezerwacje" Role="Rezerwacje" Multiplicity="*" />
+          <End Type="BiuroPodrozy.Oferta" Role="Oferta" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Oferta">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Rezerwacje">
+              <PropertyRef Name="OfertaID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="ProgramOferta">
+          <End Type="BiuroPodrozy.Program" Role="Program" Multiplicity="1" />
+          <End Type="BiuroPodrozy.Oferta" Role="Oferta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Program">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Oferta">
+              <PropertyRef Name="ProgramID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="PunktWyjazduOferta">
+          <End Type="BiuroPodrozy.PunktWyjazdu" Role="PunktWyjazdu" Multiplicity="1" />
+          <End Type="BiuroPodrozy.Oferta" Role="Oferta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PunktWyjazdu">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Oferta">
+              <PropertyRef Name="PunktWyjazduID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MiejsceOferta">
+          <End Type="BiuroPodrozy.Miejsce" Role="Miejsce" Multiplicity="1" />
+          <End Type="BiuroPodrozy.Oferta" Role="Oferta" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Miejsce">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Oferta">
+              <PropertyRef Name="MiejsceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="MiejsceNocleg">
+          <End Type="BiuroPodrozy.Miejsce" Role="Miejsce" Multiplicity="1" />
+          <End Type="BiuroPodrozy.Nocleg" Role="Nocleg" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Miejsce">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Nocleg">
+              <PropertyRef Name="MiejsceID1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="NoclegPokoje">
+          <End Type="BiuroPodrozy.Nocleg" Role="Nocleg" Multiplicity="1" />
+          <End Type="BiuroPodrozy.Pokoje" Role="Pokoje" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Nocleg">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Pokoje">
+              <PropertyRef Name="NoclegID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Uzytkownik">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Rola" Type="Int16" Nullable="false" DefaultValue="0" />
+          <Property Name="Login" Type="String" Nullable="false" MaxLength="50" />
+          <Property Name="Haslo" Type="String" Nullable="false" MaxLength="50" />
+        </EntityType>
+        <Association Name="UzytkownikKlient">
+          <End Type="BiuroPodrozy.Uzytkownik" Role="Uzytkownik" Multiplicity="1" />
+          <End Type="BiuroPodrozy.Klient" Role="Klient" Multiplicity="0..1" />
+        </Association>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BiuroPodrozyStoreContainer" CdmEntityContainer="BiuroPodrozyContainer">
+    <EntitySetMapping Name="OsobyTowarzyszaceSet">
+      <EntityTypeMapping TypeName="IsTypeOf(BiuroPodrozy.OsobyTowarzyszace)">
+        <MappingFragment StoreEntitySet="OsobyTowarzyszaceSet">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Imie" ColumnName="Imie" />
+          <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
+          <ScalarProperty Name="DataUrodzenia" ColumnName="DataUrodzenia" />
+          <ScalarProperty Name="RezerwacjeID" ColumnName="RezerwacjeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="KlientSet">
+      <EntityTypeMapping TypeName="IsTypeOf(BiuroPodrozy.Klient)">
+        <MappingFragment StoreEntitySet="KlientSet">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Imie" ColumnName="Imie" />
+          <ScalarProperty Name="Nazwisko" ColumnName="Nazwisko" />
+          <ScalarProperty Name="Adres" ColumnName="Adres" />
+          <ScalarProperty Name="DataUrodzenia" ColumnName="DataUrodzenia" />
+          <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="NumerDowodu" ColumnName="NumerDowodu" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ProgramSet">
+      <EntityTypeMapping TypeName="IsTypeOf(BiuroPodrozy.Program)">
+        <MappingFragment StoreEntitySet="ProgramSet">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Opis" ColumnName="Opis" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PunktWyjazduSet">
+      <EntityTypeMapping TypeName="IsTypeOf(BiuroPodrozy.PunktWyjazdu)">
+        <MappingFragment StoreEntitySet="PunktWyjazduSet">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Adres" ColumnName="Adres" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="RezerwacjeSet">
+      <EntityTypeMapping TypeName="IsTypeOf(BiuroPodrozy.Rezerwacje)">
+        <MappingFragment StoreEntitySet="RezerwacjeSet">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="KlientID" ColumnName="KlientID" />
+          <ScalarProperty Name="PokojeID" ColumnName="PokojeID" />
+          <ScalarProperty Name="OfertaID" ColumnName="OfertaID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OfertaSet">
+      <EntityTypeMapping TypeName="IsTypeOf(BiuroPodrozy.Oferta)">
+        <MappingFragment StoreEntitySet="OfertaSet">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Cena" ColumnName="Cena" />
+          <ScalarProperty Name="DataWyjazdu" ColumnName="DataWyjazdu" />
+          <ScalarProperty Name="DataPowrotu" ColumnName="DataPowrotu" />
+          <ScalarProperty Name="ProgramID" ColumnName="ProgramID" />
+          <ScalarProperty Name="PunktWyjazduID" ColumnName="PunktWyjazduID" />
+          <ScalarProperty Name="MiejsceID" ColumnName="MiejsceID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MiejsceSet">
+      <EntityTypeMapping TypeName="IsTypeOf(BiuroPodrozy.Miejsce)">
+        <MappingFragment StoreEntitySet="MiejsceSet">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Nazwa" ColumnName="Nazwa" />
+          <ScalarProperty Name="Opis" ColumnName="Opis" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="NoclegSet">
+      <EntityTypeMapping TypeName="IsTypeOf(BiuroPodrozy.Nocleg)">
+        <MappingFragment StoreEntitySet="NoclegSet">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Adres" ColumnName="Adres" />
+          <ScalarProperty Name="Standard" ColumnName="Standard" />
+          <ScalarProperty Name="MiejsceID" ColumnName="MiejsceID" />
+          <ScalarProperty Name="MiejsceID1" ColumnName="MiejsceID1" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PokojeSet">
+      <EntityTypeMapping TypeName="IsTypeOf(BiuroPodrozy.Pokoje)">
+        <MappingFragment StoreEntitySet="PokojeSet">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Dostepny" ColumnName="Dostepny" />
+          <ScalarProperty Name="LiczbaMiejsc" ColumnName="LiczbaMiejsc" />
+          <ScalarProperty Name="NumerPokoju" ColumnName="NumerPokoju" />
+          <ScalarProperty Name="NoclegID" ColumnName="NoclegID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UzytkownikSet">
+      <EntityTypeMapping TypeName="IsTypeOf(BiuroPodrozy.Uzytkownik)">
+        <MappingFragment StoreEntitySet="UzytkownikSet">
+          <ScalarProperty Name="ID" ColumnName="ID" />
+          <ScalarProperty Name="Rola" ColumnName="Rola" />
+          <ScalarProperty Name="Login" ColumnName="Login" />
+          <ScalarProperty Name="Haslo" ColumnName="Haslo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <AssociationSetMapping Name="UzytkownikKlient" TypeName="BiuroPodrozy.UzytkownikKlient" StoreEntitySet="KlientSet">
+      <EndProperty Name="Uzytkownik">
+        <ScalarProperty Name="ID" ColumnName="Uzytkownik_ID" />
+      </EndProperty>
+      <EndProperty Name="Klient">
+        <ScalarProperty Name="ID" ColumnName="ID" />
+      </EndProperty>
+    </AssociationSetMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <edmx:Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </edmx:Connection>
+    <edmx:Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="DDLGenerationTemplate" Value="$(VSEFTools)\DBGen\SSDLToMySQL.tt" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+      </DesignerInfoPropertySet>
+    </edmx:Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

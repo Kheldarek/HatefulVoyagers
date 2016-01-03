@@ -1,0 +1,27 @@
+﻿@model biuro.PunktWyjazdu
+
+@{
+    ViewBag.Title = "Usuwanie punktu wyjazdu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Usuń punkt wyjazdu</h2>
+
+<h3>Czy jesteś pewien, że chcesz usunąć ten punkt wyjazdu?</h3>
+<fieldset>
+    <legend>PunktWyjazdu</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Adres)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Adres)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Usuń" /> |
+        @Html.ActionLink("Powróć do listy", "Index")
+    </p>
+}

@@ -1,0 +1,33 @@
+﻿@model biuro.PunktWyjazdu
+
+@{
+    ViewBag.Title = "Tworzenie nowego punktu wyjazdu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Stwórz nowy punkt wyjazdu</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Punkt wyjazdu</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Adres)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Adres)
+            @Html.ValidationMessageFor(model => model.Adres)
+        </div>
+
+        <p>
+            <input type="submit" value="Stwórz" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Powróć do listy", "Index")
+</div>

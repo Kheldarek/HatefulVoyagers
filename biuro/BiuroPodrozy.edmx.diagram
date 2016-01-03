@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="dd6f4ce1665b4e01b355eb792aa4e915" Name="Diagram1" >
+        <EntityTypeShape EntityType="BiuroPodrozy.OsobyTowarzyszace" Width="1.5" PointX="1.5" PointY="13.125" />
+        <EntityTypeShape EntityType="BiuroPodrozy.Klient" Width="1.5" PointX="3" PointY="16.875" />
+        <EntityTypeShape EntityType="BiuroPodrozy.Program" Width="1.5" PointX="0.75" PointY="6.625" />
+        <EntityTypeShape EntityType="BiuroPodrozy.PunktWyjazdu" Width="1.5" PointX="0.75" PointY="16.25" />
+        <EntityTypeShape EntityType="BiuroPodrozy.Rezerwacje" Width="1.5" PointX="0.75" PointY="9" />
+        <EntityTypeShape EntityType="BiuroPodrozy.Oferta" Width="1.5" PointX="3" PointY="2.75" />
+        <EntityTypeShape EntityType="BiuroPodrozy.Miejsce" Width="1.5" PointX="0.75" PointY="3.25" />
+        <EntityTypeShape EntityType="BiuroPodrozy.Nocleg" Width="1.5" PointX="3" PointY="7" />
+        <EntityTypeShape EntityType="BiuroPodrozy.Pokoje" Width="1.5" PointX="5.25" PointY="7" />
+        <AssociationConnector Association="BiuroPodrozy.OsobyTowarzyszaceRezerwacje" />
+        <AssociationConnector Association="BiuroPodrozy.RezerwacjeKlient" />
+        <AssociationConnector Association="BiuroPodrozy.RezerwacjePokoje" />
+        <AssociationConnector Association="BiuroPodrozy.RezerwacjeOferta" />
+        <AssociationConnector Association="BiuroPodrozy.ProgramOferta" />
+        <AssociationConnector Association="BiuroPodrozy.PunktWyjazduOferta" />
+        <AssociationConnector Association="BiuroPodrozy.MiejsceOferta" />
+        <AssociationConnector Association="BiuroPodrozy.MiejsceNocleg" />
+        <AssociationConnector Association="BiuroPodrozy.NoclegPokoje" />
+        <EntityTypeShape EntityType="BiuroPodrozy.Uzytkownik" Width="1.5" PointX="7.375" PointY="17" />
+        <AssociationConnector Association="BiuroPodrozy.UzytkownikKlient" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

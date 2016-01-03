@@ -1,0 +1,36 @@
+﻿@model biuro.Program
+
+@{
+    ViewBag.Title = "Edycja programu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edytuj program</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Program</legend>
+
+        @Html.HiddenFor(model => model.ID)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Opis)
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Opis, new { Cols = 50, Rows = 10 })
+            @Html.ValidationMessageFor(model => model.Opis)
+        </div>
+
+        <p>
+            <input type="submit" value="Zapisz" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Powróć do listy", "Index")
+</div>

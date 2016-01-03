@@ -1,0 +1,184 @@
+﻿body {
+    margin: 0px;
+}
+
+.panel {
+    width: 80%;
+    margin: 0px auto 0px auto;
+}
+
+.line0 {
+    line-height: 0px;
+}
+
+    .line0 :not(.line0) {
+        line-height: 1em;
+    }
+
+#table_list {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+    #table_list td {
+        text-align: center;
+        border: 1px solid #AAAAAA;
+    }
+
+#main {
+    background-color: #5AC3E6;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
+}
+
+#content {
+    padding: 15px;
+    background-color: #EEEEEE;
+    margin-top: 0px;
+    position: relative;
+    overflow: no-content;
+}
+
+#footer {
+    padding: 20px 10px 10px 10px;
+    background: linear-gradient(#EEEEEE, white);
+    text-align: center;
+    height: 5em;
+    color: #888888;
+    font-size: 0.8em;
+}
+
+    #footer span {
+        margin-top: auto;
+        margin-bottom: auto;
+        vertical-align: middle;
+        line-height: 1.5em;
+    }
+
+#top {
+    background: url("samolot.png") center top, linear-gradient(transparent 20%, #EEEEEE);
+    min-height: 150px;
+    background-size: 50%, cover;
+    background-repeat: no-repeat;
+    position: relative;
+    border-left: 1px solid #EEEEEE;
+    border-right: 1px solid #EEEEEE;
+}
+
+#menu_top {
+    bottom: 0px;
+}
+
+.menu ul {
+    display: inline-block;
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+
+#menu_top ul {
+    margin: 20px 0px 0px 0px;
+    position: absolute;
+    bottom: 0px;
+}
+
+.menu li {
+    background-color: #BABABA;
+    padding: 10px;
+    border: 1px solid #EEEEEE;
+}
+
+#menu_top li {
+    background: linear-gradient(#BABABA, #EEEEEE);
+    float: left;
+    margin-right: -1px;
+    margin-left: 0px;
+}
+
+.menu li a:hover {
+    color: lightpink;
+}
+
+.menu li a {
+    text-decoration: none;
+    color: purple;
+    transition: color 0.5s;
+}
+
+#menu_top li:first-child {
+    border-top-left-radius: 15px;
+}
+
+#menu_top li:last-child {
+    border-top-right-radius: 15px;
+}
+
+#menu_bottom li {
+    background: linear-gradient(to top, #BABABA, #EEEEEE);
+    float: left;
+    margin-right: -1px;
+    margin-left: 0px;
+}
+
+#menu_bottom {
+    top: 0px;
+}
+
+    #menu_bottom li:first-child {
+        border-bottom-left-radius: 15px;
+    }
+
+    #menu_bottom li:last-child {
+        border-bottom-right-radius: 15px;
+    }
+
+.oferta {
+    padding: 10px;
+    margin: 15px auto 15px auto;
+    display: block;
+    border: 2px solid #BABABA;
+    background: white;
+    overflow: auto;
+}
+
+    .oferta .lewy {
+        width: 70%;
+        float: left;
+    }
+
+.program {
+}
+
+.miejsce {
+}
+
+.program, .miejsce {
+    margin: 5px;
+}
+
+.oferta .prawy {
+    text-align: right;
+    width: 30%;
+    float: right;
+    line-height: 1.5em;
+}
+
+.login_div {
+    float: right;
+    background: white;
+    padding: 10px;
+    opacity: 0.4;
+    transition: opacity 0.5s;
+    border-top-left-radius: 15px;
+    padding-bottom: 20px;
+    height: 100%;
+}
+
+    .login_div:hover {
+        opacity: 1;
+    }
+
+.cena {
+    color: green;
+    font-size: 2em;
+}

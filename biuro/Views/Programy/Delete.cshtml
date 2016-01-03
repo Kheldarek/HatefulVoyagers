@@ -1,0 +1,27 @@
+﻿@model biuro.Program
+
+@{
+    ViewBag.Title = "Usuwanie programu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Usuwanie programu</h2>
+
+<h3>Czy jesteś pewien, że chcesz usunąć dany program?</h3>
+<fieldset>
+    <legend>Program</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Opis)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Opis)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Usuń" /> |
+        @Html.ActionLink("Powróć do listy", "Index")
+    </p>
+}

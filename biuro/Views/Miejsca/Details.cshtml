@@ -1,0 +1,30 @@
+﻿@model biuro.Miejsce
+
+@{
+    ViewBag.Title = "Szczegóły miejsca";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Szczegóły miejsca</h2>
+
+<fieldset>
+    <legend>Miejsce</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Nazwa)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Nazwa)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Opis)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Opis)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edytuj", "Edit", new { id=Model.ID }) |
+    @Html.ActionLink("Powróć do listy", "Index")
+</p>

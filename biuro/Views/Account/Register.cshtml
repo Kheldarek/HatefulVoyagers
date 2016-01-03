@@ -1,0 +1,17 @@
+﻿@model biuro.Uzytkownik
+
+@{
+    ViewBag.Title = "Rejestracja użytkownika";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    @Html.LabelFor(m => m.Login)<br />
+    @Html.TextBoxFor(m => m.Login)<br />
+    @Html.LabelFor(m => m.Haslo)<br />
+    @Html.PasswordFor(m => m.Haslo)<br />
+    <input type="submit" value="Zarejestruj" />
+}
