@@ -19,10 +19,9 @@ namespace biuro.Controllers
         [HttpGet]
         public ActionResult Login()
         {
-            if (Request.Params["ReturnUrl"] != null && !Request.Params["ReturnUrl"].Contains("Logout"))
-                return View();
-            else
+            if (Request.Params["ReturnUrl"] != null && Request.Params["ReturnUrl"].Contains("Logout"))
                 return RedirectToAction("Index", "Home");
+            return View();
         }
 
         [HttpPost]
@@ -31,7 +30,7 @@ namespace biuro.Controllers
         {
             if (ModelState.IsValid)
             {
-                Uzytkownik t = db.UzytkownikSet.Where(user => user.Login == u.Login).First();
+                Uzytkownik t = db.UzytkownikSet.Where(user => user.Login == u.Login).FirstOrDefault();
                 if (t != null && t.Login == u.Login && t.Haslo == u.Haslo)
                 {
                     FormsAuthentication.SetAuthCookie(t.Login, (Roles)t.Rola == Roles.Klient);
@@ -44,6 +43,7 @@ namespace biuro.Controllers
                 else
                 {
                     ModelState.AddModelError("", "Nieprawidłowe dane logowania.");
+                    return View();
                 }
             }
             return RedirectToAction("Index", "Home");

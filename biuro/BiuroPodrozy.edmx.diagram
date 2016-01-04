@@ -12,8 +12,8 @@
         <EntityTypeShape EntityType="BiuroPodrozy.Rezerwacje" Width="1.5" PointX="0.75" PointY="9" />
         <EntityTypeShape EntityType="BiuroPodrozy.Oferta" Width="1.5" PointX="3" PointY="2.75" />
         <EntityTypeShape EntityType="BiuroPodrozy.Miejsce" Width="1.5" PointX="0.75" PointY="3.25" />
-        <EntityTypeShape EntityType="BiuroPodrozy.Nocleg" Width="1.5" PointX="3" PointY="7" />
-        <EntityTypeShape EntityType="BiuroPodrozy.Pokoje" Width="1.5" PointX="5.25" PointY="7" />
+        <EntityTypeShape EntityType="BiuroPodrozy.Nocleg" Width="1.5" PointX="5" PointY="6.875" />
+        <EntityTypeShape EntityType="BiuroPodrozy.Pokoje" Width="1.5" PointX="7.375" PointY="7.125" />
         <AssociationConnector Association="BiuroPodrozy.OsobyTowarzyszaceRezerwacje" />
         <AssociationConnector Association="BiuroPodrozy.RezerwacjeKlient" />
         <AssociationConnector Association="BiuroPodrozy.RezerwacjePokoje" />

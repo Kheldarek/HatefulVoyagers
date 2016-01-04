@@ -1,0 +1,48 @@
+﻿@model biuro.Pokoje
+
+@{
+    ViewBag.Title = "Usuwanie pokoju";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Usuwanie pokoju</h2>
+
+<h3>Czy jesteś pewien, że chcesz usunąć ten pokój?</h3>
+<fieldset>
+    <legend>Pokoje</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Dostepny)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Dostepny)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.LiczbaMiejsc)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LiczbaMiejsc)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.NumerPokoju)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.NumerPokoju)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Nocleg.Adres)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Nocleg.Adres)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Powróć do listy", "Index")
+    </p>
+}

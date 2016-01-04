@@ -36,9 +36,14 @@
             </span><br />
             Data wyjazdu: @Html.DisplayFor(modelItem => item.DataWyjazdu) <br />
             Data powrotu: @Html.DisplayFor(modelItem => item.DataPowrotu) <br />
-            @Html.ActionLink("Edytuj", "Edit", new { id = item.ID }) |
-            @Html.ActionLink("Szczegóły", "Details", new { id = item.ID }) |
-            @Html.ActionLink("Usuń", "Delete", new { id = item.ID })
+            @{
+                if (ViewContext.HttpContext.User.IsInRole("Admin"))
+                {
+                    @Html.ActionLink("Edytuj", "Edit", new { id = item.ID }) <span>|</span>
+                    @Html.ActionLink("Szczegóły", "Details", new { id = item.ID }) <span>|</span>
+                    @Html.ActionLink("Usuń", "Delete", new{ id = item.ID })
+                }
+            }
         </did>
     </did>
 }

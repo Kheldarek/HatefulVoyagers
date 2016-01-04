@@ -132,7 +132,6 @@
     <Property Name="Adres" Type="varchar" Nullable="false" MaxLength="70" />
     <Property Name="Standard" Type="varchar" Nullable="false" MaxLength="150" />
     <Property Name="MiejsceID" Type="int" Nullable="false" />
-    <Property Name="MiejsceID1" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="PokojeSet">
     <Key>
@@ -245,7 +244,7 @@
         <PropertyRef Name="ID" />
       </Principal>
       <Dependent Role="Nocleg">
-        <PropertyRef Name="MiejsceID1" />
+        <PropertyRef Name="MiejsceID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -419,7 +418,6 @@
           <Property Name="Standard" Type="String" Nullable="false" MaxLength="150" />
           <Property Name="MiejsceID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Miejsce" Relationship="BiuroPodrozy.MiejsceNocleg" FromRole="Nocleg" ToRole="Miejsce" />
-          <Property Name="MiejsceID1" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Pokoje" Relationship="BiuroPodrozy.NoclegPokoje" FromRole="Nocleg" ToRole="Pokoje" />
         </EntityType>
         <EntityType Name="Pokoje">
@@ -526,7 +524,7 @@
               <PropertyRef Name="ID" />
             </Principal>
             <Dependent Role="Nocleg">
-              <PropertyRef Name="MiejsceID1" />
+              <PropertyRef Name="MiejsceID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -641,7 +639,6 @@
           <ScalarProperty Name="Adres" ColumnName="Adres" />
           <ScalarProperty Name="Standard" ColumnName="Standard" />
           <ScalarProperty Name="MiejsceID" ColumnName="MiejsceID" />
-          <ScalarProperty Name="MiejsceID1" ColumnName="MiejsceID1" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

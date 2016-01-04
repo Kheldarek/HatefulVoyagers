@@ -24,7 +24,6 @@ namespace biuro
         public string Adres { get; set; }
         public string Standard { get; set; }
         public int MiejsceID { get; set; }
-        public int MiejsceID1 { get; set; }
     
         public virtual Miejsce Miejsce { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

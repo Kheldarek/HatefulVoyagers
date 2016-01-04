@@ -8,13 +8,14 @@ using System.Web.Mvc;
 
 namespace biuro.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class OfertyController : Controller
     {
         private BiuroPodrozyContainer db = new BiuroPodrozyContainer();
 
         //
         // GET: /Oferty/
-
+        [AllowAnonymous]
         public ActionResult Index()
         {
             var ofertaset = db.OfertaSet.Include(o => o.Program).Include(o => o.PunktWyjazdu).Include(o => o.Miejsce);

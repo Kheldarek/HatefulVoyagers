@@ -17,7 +17,7 @@ namespace biuro
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Uzytkownik()
         {
-            this.Rola = -1;
+            this.Rola = 0;
         }
     
         public int ID { get; set; }

@@ -1,0 +1,45 @@
+﻿@model IEnumerable<biuro.Pokoje>
+
+@{
+    ViewBag.Title = "Pokoje";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Dostępne pokoje</h2>
+
+<p>
+    @Html.ActionLink("Dodaj pokój", "Create")
+</p>
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Dostepny)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LiczbaMiejsc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.NumerPokoju)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Dostepny)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LiczbaMiejsc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.NumerPokoju)
+        </td>
+        <td>
+            @Html.ActionLink("Edytuj", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Usuń", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

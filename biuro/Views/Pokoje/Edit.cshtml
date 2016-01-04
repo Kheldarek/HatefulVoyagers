@@ -1,0 +1,59 @@
+﻿@model biuro.Pokoje
+
+@{
+    ViewBag.Title = "Edycja pokoju";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edycja pokoju</h2>
+
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Pokoje</legend>
+
+        @Html.HiddenFor(model => model.ID)
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Dostepny)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Dostepny)
+            @Html.ValidationMessageFor(model => model.Dostepny)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LiczbaMiejsc)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LiczbaMiejsc)
+            @Html.ValidationMessageFor(model => model.LiczbaMiejsc)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.NumerPokoju)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.NumerPokoju)
+            @Html.ValidationMessageFor(model => model.NumerPokoju)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.NoclegID, "Nocleg")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("NoclegID", String.Empty)
+            @Html.ValidationMessageFor(model => model.NoclegID)
+        </div>
+
+        <p>
+            <input type="submit" value="Zapisz" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Powróć do listy", "Index")
+</div>

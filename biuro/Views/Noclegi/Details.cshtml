@@ -1,0 +1,44 @@
+﻿@model biuro.Nocleg
+
+@{
+    ViewBag.Title = "Szczegóły";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Szczegóły</h2>
+
+<fieldset>
+    <legend>Nocleg</legend>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Adres)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Adres)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Standard)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Standard)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.MiejsceID)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.MiejsceID)
+    </div>
+
+    <div class="display-label">
+        @Html.DisplayNameFor(model => model.Miejsce.Nazwa)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Miejsce.Nazwa)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edytuj", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Powróć do listy", "Index")
+</p>
