@@ -44,7 +44,7 @@ namespace biuro.Controllers
             tmp.OfertaID = ofertaid;
             tmp.PokojeID = pokojid;
             r.klient.Uzytkownik = db.UzytkownikSet.Where(u => u.Login == User.Identity.Name).ToList().First();
-
+            //xx
             db.KlientSet.Add(r.klient);
             db.RezerwacjeSet.Add(tmp);
             db.SaveChanges();
