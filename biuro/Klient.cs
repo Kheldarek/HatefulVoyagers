@@ -11,35 +11,26 @@ namespace biuro
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
+    
     public partial class Klient
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Klient()
         {
             this.Rezerwacje = new HashSet<Rezerwacje>();
-            this.HistoriaRezerwacji = new HashSet<HistoriaRezerwacji>();
         }
     
         public int ID { get; set; }
-        [Required]
         public string Imie { get; set; }
-        [Required]
         public string Nazwisko { get; set; }
-        [Required]
         public string Adres { get; set; }
-        [Required]
         public System.DateTime DataUrodzenia { get; set; }
-        [Required]
         public string Telefon { get; set; }
         public string Email { get; set; }
-        [Required]
         public string NumerDowodu { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Rezerwacje> Rezerwacje { get; set; }
         public virtual Uzytkownik Uzytkownik { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HistoriaRezerwacji> HistoriaRezerwacji { get; set; }
     }
 }

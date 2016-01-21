@@ -11,7 +11,9 @@
 {
     @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
-
+    <div>
+        @Html.Hidden("oferta_id", null, new { @id = "oferta_id" })
+    </div>
     <fieldset>
         <legend>Informacje o kliencie</legend>
 
@@ -73,15 +75,25 @@
 
     <fieldset>
         <legend>Hotel</legend>
-        <select id="hotele"></select>
+        <select id="hotele" name="hotele"></select>
     </fieldset>
 
     <fieldset>
         <legend>Pokój</legend>
-        <select id="pokoje"></select>
+        <select id="pokoje" name="pokoje"></select>
+    </fieldset>
+    <fieldset>
+        <legend>Osoby Towarzyszace</legend>
+        @Html.Label("Liczba osob")
+        @Html.TextBox("l_osob",0, new { @id = "l_os" })
+       <div id="people" name="ppl">
+
+
+       </div> 
+
     </fieldset>
     <p>
-        <input type="submit" value="Zarezerwuj" />
+        <input type="submit"  value="Zarezerwuj" />
     </p>
 }
 
@@ -115,5 +127,9 @@
                 }
             });
         });
+    </script>
+
+    <script>
+
     </script>
 }

@@ -18,7 +18,6 @@ namespace biuro
         public Rezerwacje()
         {
             this.OsobyTowarzyszace = new HashSet<OsobyTowarzyszace>();
-            this.HistoriaRezerwacji = new HashSet<HistoriaRezerwacji>();
         }
     
         public int ID { get; set; }
@@ -31,7 +30,5 @@ namespace biuro
         public virtual Klient Klient { get; set; }
         public virtual Pokoje Pokoje { get; set; }
         public virtual Oferta Oferta { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<HistoriaRezerwacji> HistoriaRezerwacji { get; set; }
     }
 }

@@ -24,7 +24,7 @@ namespace biuro.Controllers
 
         //
         // GET: /Oferty/Details/5
-
+        [AllowAnonymous]
         public ActionResult Details(int id = 0)
         {
             Oferta oferta = db.OfertaSet.Find(id);
@@ -33,6 +33,14 @@ namespace biuro.Controllers
                 return HttpNotFound();
             }
             return View(oferta);
+        }
+
+        [AllowAnonymous]
+        public ActionResult Opinions(int id)
+        {
+            
+            var opinie = db.OpinieSet.Where(m => m.MiejsceID == id);
+            return View(opinie.ToList());
         }
 
         //

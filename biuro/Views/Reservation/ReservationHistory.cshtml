@@ -1,0 +1,32 @@
+﻿@model List<biuro.Models.History>
+@{
+    ViewBag.Title = "ReservationHistory";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Historia Wycieczek</h2>
+
+@for (int i = 0; i < Model.Count; i++)
+{
+    <did class="oferta">
+        <did class="lewy">
+            <div class="miejsce">
+                Miejsce docelowe: @Html.DisplayFor(modelItem => Model.ElementAt(i).nazwa) <br />
+                @Html.DisplayFor(modelItem => Model.ElementAt(i).opis)<br />
+              
+            </div>
+            <div class="program">
+                Program oferty:<br />
+                @Html.DisplayFor(modelItem => Model.ElementAt(i).program)
+            </div>
+        </did>
+        <did class="prawy">
+            <span class="cena">
+                @Html.DisplayFor(modelItem => Model.ElementAt(i).cena) zł
+            </span><br />
+            Data wyjazdu: @Html.DisplayFor(modelItem => Model.ElementAt(i).start) <br />
+            Data powrotu: @Html.DisplayFor(modelItem => Model.ElementAt(i).koniec) <br />
+            @Html.ActionLink("Dodaj opinię", "Opinion", "Reservation", new { miejsce_id = Model.ElementAt(i).MiejsceId }, "") <br />
+        </did>
+    </did>
+}

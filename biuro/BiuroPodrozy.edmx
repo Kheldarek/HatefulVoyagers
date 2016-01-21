@@ -433,7 +433,6 @@
           <Property Name="NumerDowodu" Type="String" Nullable="false" MaxLength="30" />
           <NavigationProperty Name="Rezerwacje" Relationship="BiuroPodrozy.RezerwacjeKlient" FromRole="Klient" ToRole="Rezerwacje" />
           <NavigationProperty Name="Uzytkownik" Relationship="BiuroPodrozy.UzytkownikKlient" FromRole="Klient" ToRole="Uzytkownik" />
-          <NavigationProperty Name="HistoriaRezerwacji" Relationship="BiuroPodrozy.HistoriaRezerwacjiKlient" FromRole="Klient" ToRole="HistoriaRezerwacji" />
         </EntityType>
         <EntityType Name="Program">
           <Key>
@@ -463,7 +462,6 @@
           <Property Name="PokojeID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Oferta" Relationship="BiuroPodrozy.RezerwacjeOferta" FromRole="Rezerwacje" ToRole="Oferta" />
           <Property Name="OfertaID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="HistoriaRezerwacji" Relationship="BiuroPodrozy.HistoriaRezerwacjiRezerwacje" FromRole="Rezerwacje" ToRole="HistoriaRezerwacji" />
         </EntityType>
         <EntityType Name="Oferta">
           <Key>

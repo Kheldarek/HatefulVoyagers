@@ -1,0 +1,22 @@
+﻿@model List<biuro.Opinie>
+@{
+    ViewBag.Title = "Opinions";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Opinie klientow</h2>
+
+
+   
+        @for (int i = 0; i < Model.Count; ++i)
+        {
+            <did class="oferta">
+                @Html.DisplayFor(model => model.ElementAt(i).Opinia)
+            </did>
+
+        }
+
+
+
+       
+            

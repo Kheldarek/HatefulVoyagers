@@ -15,8 +15,11 @@ namespace biuro.Controllers
         [Authorize(Roles ="Klient")]
         public ActionResult Reserve(int oferta_id)
         {
-            if(db.OfertaSet.Find(oferta_id) != null)
+            if (db.OfertaSet.Find(oferta_id) != null)
+            {
+                ViewData["oferta_id"] = oferta_id;
                 return View();
+            }
             else
                 return RedirectToAction("Index", "Oferty");
         }
@@ -26,18 +29,80 @@ namespace biuro.Controllers
         [Authorize(Roles = "Klient")]
         public ActionResult Reserve(Rezerwacja r)
         {
+            int hotelid = int.Parse(HttpContext.Request.Form.GetValues("hotele").FirstOrDefault());
+            int pokojid = int.Parse(HttpContext.Request.Form.GetValues("pokoje").FirstOrDefault());
+            int ofertaid = int.Parse(HttpContext.Request.Form.GetValues("oferta_id").FirstOrDefault());
+            int m_id = db.OfertaSet.Find(ofertaid).Miejsce.ID;
+            var hotel  = db.NoclegSet.Find(hotelid);
+            var pokoj = db.PokojeSet.Find(pokojid);
+            r.nocleg = hotel;
+            r.pokoj = pokoj;
+            r.oferta = ofertaid;
+            Rezerwacje tmp = new Rezerwacje();
+            
+            tmp.KlientID = r.klient.ID;
+            tmp.OfertaID = ofertaid;
+            tmp.PokojeID = pokojid;
+            r.klient.Uzytkownik = db.UzytkownikSet.Where(u => u.Login == User.Identity.Name).ToList().First();
+
+            db.KlientSet.Add(r.klient);
+            db.RezerwacjeSet.Add(tmp);
+            db.SaveChanges();
+
             return RedirectToAction("Success");
         }
 
         public ActionResult Success()
         {
+            
             return View();
         }
+        [Authorize(Roles = "Klient")]
+        public ActionResult ReservationHistory()
+        {
 
+            var klient = db.KlientSet.Where(k => k.Uzytkownik.Login == HttpContext.User.Identity.Name).ToList().First();
+            var rezerwacje = db.RezerwacjeSet.Where(u => u.KlientID == klient.ID).ToList();
+            List < History > lista  = new List<History>();
+            foreach (var trip in rezerwacje)
+            {
+
+                History historia = new History();
+                historia.nazwa = trip.Oferta.Miejsce.Nazwa;
+                historia.cena = trip.Oferta.Cena;
+                historia.program = trip.Oferta.Program.Opis;
+                historia.opis = trip.Oferta.Miejsce.Opis;
+                historia.start = trip.Oferta.DataWyjazdu;
+                historia.koniec = trip.Oferta.DataPowrotu;
+                historia.MiejsceId = trip.Oferta.MiejsceID;
+                lista.Add(historia);
+            }
+            return View(lista);
+        }
+        [Authorize(Roles = "Klient")]
+        public ActionResult Opinion(int miejsce_id)
+        {
+            ViewData["miejsce_id"] = miejsce_id;
+            //Opinie tmp = new Opinie();
+            //tmp.MiejsceID = miejsce_id;
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Authorize(Roles = "Klient")]
+        public ActionResult Opinion(Opinie o)
+        {
+            int m_id = int.Parse(HttpContext.Request.Form.GetValues("miejsce_id").First());
+            o.MiejsceID = m_id;
+            db.OpinieSet.Add(o);
+            db.SaveChanges();
+            return View();
+        }
         public JsonResult GetMatchingHotels(int oferta_id)
         {
             int m_id = db.OfertaSet.Find(oferta_id).Miejsce.ID;
             List<Nocleg> lista = db.NoclegSet.Where(n => n.MiejsceID == m_id).ToList();
+
             for (int i = 0; i < lista.Count(); i++)
             {
                 while(lista[i].Miejsce != null)

@@ -1,0 +1,20 @@
+﻿@model biuro.Opinie
+@{
+    ViewBag.Title = "Opinion";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Dodaj opinie</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    @Html.Hidden("miejsce_id", null, new { @id = "miejsce_id" })
+    @Html.Label("Napisz opinie")    <br />
+    @Html.TextAreaFor(model => model.Opinia)    <br />
+
+    <input type="submit" value="Wyslij" />
+
+    }
