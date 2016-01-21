@@ -84,22 +84,47 @@
     </fieldset>
     <fieldset>
         <legend>Osoby Towarzyszace</legend>
-        @Html.Label("Liczba osob")
-        @Html.TextBox("l_osob",0, new { @id = "l_os" })
        <div id="people" name="ppl">
-
-
+           <div class="person">
+               Imię<br />
+               <input type="text" /><br />
+               Nazwisko<br />
+               <input type="text" /><br />
+               data urodzenia<br />
+               <input type="text" />
+           </div>
+           <br />
        </div> 
 
     </fieldset>
     <p>
-        <input type="submit"  value="Zarezerwuj" />
+        <input id="resbtn" type="submit"  value="Zarezerwuj" />
     </p>
 }
 
 @section Scripts{
     <script>
         $(document).ready(function () {
+            $("#people").change(function(e){
+                var empty = false;
+                var person_input = $("#people .person:last input");
+                for(var i = 0; i < person_input.length; i++)
+                {
+                    if(person_input[i].value == "")
+                    {   empty = true;
+                    }
+                }
+                if(!empty)
+                    $("#people").append("<div class=\"person\">Imię<br /><input type=\"text\" /><br />Nazwisko<br /><input type=\"text\" /><br />data urodzenia<br /><input type=\"text\" /></div><br />");
+            });
+            $("#resbtn").click(function(){
+                var json = [];
+                $("#people .person").each(function(i, e){
+                    var inputs = e.getElementsByTagName("input");
+                    json.push({imie: inputs[0].value, nazwisko: inputs[1].value, dataur: inputs[2].value});
+                });
+                $("form").append("<input type=\"hidden\" name=\"osoby\" value="+JSON.stringify(json)+"\"/>");
+            });
             $("#hotele").change(function(){
                 $.ajax({
                     url: "@Url.Action("GetHotelRooms")",

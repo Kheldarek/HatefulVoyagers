@@ -1,10 +1,13 @@
 ﻿using biuro.Models;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Web;
+using System.Web.Helpers;
 using System.Web.Mvc;
+using System.Web.Script.Serialization;
 
 namespace biuro.Controllers
 {
@@ -32,7 +35,10 @@ namespace biuro.Controllers
             int hotelid = int.Parse(HttpContext.Request.Form.GetValues("hotele").FirstOrDefault());
             int pokojid = int.Parse(HttpContext.Request.Form.GetValues("pokoje").FirstOrDefault());
             int ofertaid = int.Parse(HttpContext.Request.Form.GetValues("oferta_id").FirstOrDefault());
+            var json = new JavaScriptSerializer();
             int m_id = db.OfertaSet.Find(ofertaid).Miejsce.ID;
+            string jsonstring = HttpContext.Request.Form.GetValues("osoby").FirstOrDefault().Replace("\\", "").Replace("\"/", "");
+            JArray osoby = JArray.Parse(jsonstring);
             var hotel  = db.NoclegSet.Find(hotelid);
             var pokoj = db.PokojeSet.Find(pokojid);
             r.nocleg = hotel;
@@ -43,6 +49,19 @@ namespace biuro.Controllers
             tmp.KlientID = r.klient.ID;
             tmp.OfertaID = ofertaid;
             tmp.PokojeID = pokojid;
+            foreach (var i in osoby)
+            {
+                OsobyTowarzyszace o = new OsobyTowarzyszace();
+                o.Imie = i["imie"].ToString();
+                o.Nazwisko = i["nazwisko"].ToString();
+                o.RezerwacjeID = tmp.ID;
+                if (o.Imie != "" && o.Nazwisko != "")
+                { 
+                    o.DataUrodzenia = DateTime.Parse(i["dataur"].ToString());
+                    tmp.OsobyTowarzyszace.Add(o);
+                    db.OsobyTowarzyszaceSet.Add(o);
+                }
+            }
             r.klient.Uzytkownik = db.UzytkownikSet.Where(u => u.Login == User.Identity.Name).ToList().First();
 
             db.KlientSet.Add(r.klient);
