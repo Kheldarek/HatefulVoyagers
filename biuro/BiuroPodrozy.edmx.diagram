@@ -23,8 +23,13 @@
         <AssociationConnector Association="BiuroPodrozy.MiejsceOferta" />
         <AssociationConnector Association="BiuroPodrozy.MiejsceNocleg" />
         <AssociationConnector Association="BiuroPodrozy.NoclegPokoje" />
-        <EntityTypeShape EntityType="BiuroPodrozy.Uzytkownik" Width="1.5" PointX="7.375" PointY="17" />
+        <EntityTypeShape EntityType="BiuroPodrozy.Uzytkownik" Width="1.5" PointX="7.5" PointY="17.75" />
         <AssociationConnector Association="BiuroPodrozy.UzytkownikKlient" />
+        <EntityTypeShape EntityType="BiuroPodrozy.HistoriaRezerwacji" Width="1.5" PointX="7.375" PointY="15.125" />
+        <EntityTypeShape EntityType="BiuroPodrozy.Opinie" Width="1.5" PointX="5.125" PointY="11.375" />
+        <AssociationConnector Association="BiuroPodrozy.OpinieMiejsce" />
+        <AssociationConnector Association="BiuroPodrozy.HistoriaRezerwacjiRezerwacje" />
+        <AssociationConnector Association="BiuroPodrozy.HistoriaRezerwacjiKlient" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

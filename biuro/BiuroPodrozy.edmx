@@ -16,6 +16,8 @@
     <EntitySet Name="NoclegSet" EntityType="BiuroPodrozy.Store.NoclegSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="PokojeSet" EntityType="BiuroPodrozy.Store.PokojeSet" store:Type="Tables" Schema="dbo" />
     <EntitySet Name="UzytkownikSet" EntityType="BiuroPodrozy.Store.UzytkownikSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="HistoriaRezerwacjiSet" EntityType="BiuroPodrozy.Store.HistoriaRezerwacjiSet" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="OpinieSet" EntityType="BiuroPodrozy.Store.OpinieSet" store:Type="Tables" Schema="dbo" />
     <AssociationSet Name="OsobyTowarzyszaceRezerwacje" Association="BiuroPodrozy.Store.OsobyTowarzyszaceRezerwacje">
       <End Role="OsobyTowarzyszace" EntitySet="OsobyTowarzyszaceSet" />
       <End Role="Rezerwacje" EntitySet="RezerwacjeSet" />
@@ -54,6 +56,18 @@
     </AssociationSet>
     <AssociationSet Name="UzytkownikKlient" Association="BiuroPodrozy.Store.UzytkownikKlient">
       <End Role="Uzytkownik" EntitySet="UzytkownikSet" />
+      <End Role="Klient" EntitySet="KlientSet" />
+    </AssociationSet>
+    <AssociationSet Name="OpinieMiejsce" Association="BiuroPodrozy.Store.OpinieMiejsce">
+      <End Role="Opinie" EntitySet="OpinieSet" />
+      <End Role="Miejsce" EntitySet="MiejsceSet" />
+    </AssociationSet>
+    <AssociationSet Name="HistoriaRezerwacjiRezerwacje" Association="BiuroPodrozy.Store.HistoriaRezerwacjiRezerwacje">
+      <End Role="HistoriaRezerwacji" EntitySet="HistoriaRezerwacjiSet" />
+      <End Role="Rezerwacje" EntitySet="RezerwacjeSet" />
+    </AssociationSet>
+    <AssociationSet Name="HistoriaRezerwacjiKlient" Association="BiuroPodrozy.Store.HistoriaRezerwacjiKlient">
+      <End Role="HistoriaRezerwacji" EntitySet="HistoriaRezerwacjiSet" />
       <End Role="Klient" EntitySet="KlientSet" />
     </AssociationSet>
   </EntityContainer>
@@ -151,6 +165,22 @@
     <Property Name="Rola" Type="smallint" Nullable="false" DefaultValue="0" />
     <Property Name="Login" Type="varchar" Nullable="false" MaxLength="50" />
     <Property Name="Haslo" Type="varchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="HistoriaRezerwacjiSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RezerwacjeID" Type="int" Nullable="false" />
+    <Property Name="KlientID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="OpinieSet">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Opinia" Type="longtext" Nullable="false" />
+    <Property Name="MiejsceID" Type="int" Nullable="false" />
   </EntityType>
   <Association Name="OsobyTowarzyszaceRezerwacje">
     <End Role="OsobyTowarzyszace" Type="BiuroPodrozy.Store.OsobyTowarzyszaceSet" Multiplicity="*" />
@@ -272,6 +302,42 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="OpinieMiejsce">
+    <End Role="Opinie" Type="BiuroPodrozy.Store.OpinieSet" Multiplicity="*" />
+    <End Role="Miejsce" Type="BiuroPodrozy.Store.MiejsceSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Miejsce">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="Opinie">
+        <PropertyRef Name="MiejsceID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HistoriaRezerwacjiRezerwacje">
+    <End Role="HistoriaRezerwacji" Type="BiuroPodrozy.Store.HistoriaRezerwacjiSet" Multiplicity="*" />
+    <End Role="Rezerwacje" Type="BiuroPodrozy.Store.RezerwacjeSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Rezerwacje">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="HistoriaRezerwacji">
+        <PropertyRef Name="RezerwacjeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="HistoriaRezerwacjiKlient">
+    <End Role="HistoriaRezerwacji" Type="BiuroPodrozy.Store.HistoriaRezerwacjiSet" Multiplicity="*" />
+    <End Role="Klient" Type="BiuroPodrozy.Store.KlientSet" Multiplicity="1" />
+    <ReferentialConstraint>
+      <Principal Role="Klient">
+        <PropertyRef Name="ID" />
+      </Principal>
+      <Dependent Role="HistoriaRezerwacji">
+        <PropertyRef Name="KlientID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
 </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -327,6 +393,20 @@
             <End Role="Uzytkownik" EntitySet="UzytkownikSet" />
             <End Role="Klient" EntitySet="KlientSet" />
           </AssociationSet>
+          <EntitySet Name="HistoriaRezerwacjiSet" EntityType="BiuroPodrozy.HistoriaRezerwacji" />
+          <EntitySet Name="OpinieSet" EntityType="BiuroPodrozy.Opinie" />
+          <AssociationSet Name="OpinieMiejsce" Association="BiuroPodrozy.OpinieMiejsce">
+            <End Role="Opinie" EntitySet="OpinieSet" />
+            <End Role="Miejsce" EntitySet="MiejsceSet" />
+          </AssociationSet>
+          <AssociationSet Name="HistoriaRezerwacjiRezerwacje" Association="BiuroPodrozy.HistoriaRezerwacjiRezerwacje">
+            <End Role="HistoriaRezerwacji" EntitySet="HistoriaRezerwacjiSet" />
+            <End Role="Rezerwacje" EntitySet="RezerwacjeSet" />
+          </AssociationSet>
+          <AssociationSet Name="HistoriaRezerwacjiKlient" Association="BiuroPodrozy.HistoriaRezerwacjiKlient">
+            <End Role="HistoriaRezerwacji" EntitySet="HistoriaRezerwacjiSet" />
+            <End Role="Klient" EntitySet="KlientSet" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="OsobyTowarzyszace">
           <Key>
@@ -353,6 +433,7 @@
           <Property Name="NumerDowodu" Type="String" Nullable="false" MaxLength="30" />
           <NavigationProperty Name="Rezerwacje" Relationship="BiuroPodrozy.RezerwacjeKlient" FromRole="Klient" ToRole="Rezerwacje" />
           <NavigationProperty Name="Uzytkownik" Relationship="BiuroPodrozy.UzytkownikKlient" FromRole="Klient" ToRole="Uzytkownik" />
+          <NavigationProperty Name="HistoriaRezerwacji" Relationship="BiuroPodrozy.HistoriaRezerwacjiKlient" FromRole="Klient" ToRole="HistoriaRezerwacji" />
         </EntityType>
         <EntityType Name="Program">
           <Key>
@@ -382,6 +463,7 @@
           <Property Name="PokojeID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="Oferta" Relationship="BiuroPodrozy.RezerwacjeOferta" FromRole="Rezerwacje" ToRole="Oferta" />
           <Property Name="OfertaID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="HistoriaRezerwacji" Relationship="BiuroPodrozy.HistoriaRezerwacjiRezerwacje" FromRole="Rezerwacje" ToRole="HistoriaRezerwacji" />
         </EntityType>
         <EntityType Name="Oferta">
           <Key>
@@ -553,6 +635,61 @@
           <End Type="BiuroPodrozy.Uzytkownik" Role="Uzytkownik" Multiplicity="1" />
           <End Type="BiuroPodrozy.Klient" Role="Klient" Multiplicity="0..1" />
         </Association>
+        <EntityType Name="HistoriaRezerwacji">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Rezerwacje" Relationship="BiuroPodrozy.HistoriaRezerwacjiRezerwacje" FromRole="HistoriaRezerwacji" ToRole="Rezerwacje" />
+          <Property Name="RezerwacjeID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Klient" Relationship="BiuroPodrozy.HistoriaRezerwacjiKlient" FromRole="HistoriaRezerwacji" ToRole="Klient" />
+          <Property Name="KlientID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Opinie">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Opinia" Type="String" Nullable="false" />
+          <NavigationProperty Name="Miejsce" Relationship="BiuroPodrozy.OpinieMiejsce" FromRole="Opinie" ToRole="Miejsce" />
+          <Property Name="MiejsceID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <Association Name="OpinieMiejsce">
+          <End Type="BiuroPodrozy.Opinie" Role="Opinie" Multiplicity="*" />
+          <End Type="BiuroPodrozy.Miejsce" Role="Miejsce" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Miejsce">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Opinie">
+              <PropertyRef Name="MiejsceID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="HistoriaRezerwacjiRezerwacje">
+          <End Type="BiuroPodrozy.HistoriaRezerwacji" Role="HistoriaRezerwacji" Multiplicity="*" />
+          <End Type="BiuroPodrozy.Rezerwacje" Role="Rezerwacje" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Rezerwacje">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="HistoriaRezerwacji">
+              <PropertyRef Name="RezerwacjeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="HistoriaRezerwacjiKlient">
+          <End Type="BiuroPodrozy.HistoriaRezerwacji" Role="HistoriaRezerwacji" Multiplicity="*" />
+          <End Type="BiuroPodrozy.Klient" Role="Klient" Multiplicity="1" />
+          <ReferentialConstraint>
+            <Principal Role="Klient">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="HistoriaRezerwacji">
+              <PropertyRef Name="KlientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -660,6 +797,24 @@
           <ScalarProperty Name="Rola" ColumnName="Rola" />
           <ScalarProperty Name="Login" ColumnName="Login" />
           <ScalarProperty Name="Haslo" ColumnName="Haslo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="HistoriaRezerwacjiSet">
+      <EntityTypeMapping TypeName="IsTypeOf(BiuroPodrozy.HistoriaRezerwacji)">
+        <MappingFragment StoreEntitySet="HistoriaRezerwacjiSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="RezerwacjeID" ColumnName="RezerwacjeID" />
+          <ScalarProperty Name="KlientID" ColumnName="KlientID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OpinieSet">
+      <EntityTypeMapping TypeName="IsTypeOf(BiuroPodrozy.Opinie)">
+        <MappingFragment StoreEntitySet="OpinieSet">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Opinia" ColumnName="Opinia" />
+          <ScalarProperty Name="MiejsceID" ColumnName="MiejsceID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

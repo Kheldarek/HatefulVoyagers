@@ -36,6 +36,7 @@
             </span><br />
             Data wyjazdu: @Html.DisplayFor(modelItem => item.DataWyjazdu) <br />
             Data powrotu: @Html.DisplayFor(modelItem => item.DataPowrotu) <br />
+            @Html.ActionLink("Zarezerwuj", "Reserve", "Reservation", new { oferta_id = item.ID }, "") <br/>
             @{
                 if (ViewContext.HttpContext.User.IsInRole("Admin"))
                 {

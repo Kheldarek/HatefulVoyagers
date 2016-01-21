@@ -1,0 +1,119 @@
+﻿@model biuro.Models.Rezerwacja
+
+@{
+    ViewBag.Title = "Rezerwacja";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Rezerwacja</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Informacje o kliencie</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.klient.Imie)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.klient.Imie)
+            @Html.ValidationMessageFor(model => model.klient.Imie)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.klient.Nazwisko)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.klient.Nazwisko)
+            @Html.ValidationMessageFor(model => model.klient.Nazwisko)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.klient.DataUrodzenia)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.klient.DataUrodzenia)
+            @Html.ValidationMessageFor(model => model.klient.DataUrodzenia)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.klient.Adres)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.klient.Adres)
+            @Html.ValidationMessageFor(model => model.klient.Adres)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.klient.NumerDowodu)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.klient.NumerDowodu)
+            @Html.ValidationMessageFor(model => model.klient.NumerDowodu)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.klient.Telefon)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.klient.Telefon)
+            @Html.ValidationMessageFor(model => model.klient.Telefon)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.klient.Email)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.klient.Email)
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Hotel</legend>
+        <select id="hotele"></select>
+    </fieldset>
+
+    <fieldset>
+        <legend>Pokój</legend>
+        <select id="pokoje"></select>
+    </fieldset>
+    <p>
+        <input type="submit" value="Zarezerwuj" />
+    </p>
+}
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $("#hotele").change(function(){
+                $.ajax({
+                    url: "@Url.Action("GetHotelRooms")",
+                    data: { nocleg_id: $("#hotele").val()},
+                type: "GET",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    $("#pokoje").empty();
+                    for(var i = 0; i < data.length; i++)
+                        $("#pokoje").append("<option value=\""+data[i]["ID"]+"\">Numer pokoju: "+data[i]["NumerPokoju"]+", liczba miejsc: "+data[i]["LiczbaMiejsc"]+"</option>");
+                }
+                });
+            });
+            $.ajax({
+                url: "@Url.Action("GetMatchingHotels")",
+                data: { oferta_id: @Request.Params["oferta_id"]},
+                type: "GET",
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: function (data) {
+                    for(var i = 0; i < data.length; i++)
+                        $("#hotele").append("<option value=\""+data[i]["ID"]+"\">"+data[i]["Adres"]+"</option>");
+                    $("#hotele").trigger("change");
+                }
+            });
+        });
+    </script>
+}
