@@ -66,6 +66,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="MySql.Data.Entity.EF5, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="MySql.Data.Entity.EF6, Version=6.9.8.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.5.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -164,9 +165,12 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MiejscaController.cs" />
+    <Compile Include="Controllers\NoclegiController.cs" />
     <Compile Include="Controllers\OfertyController.cs" />
+    <Compile Include="Controllers\PokojeController.cs" />
     <Compile Include="Controllers\ProgramyController.cs" />
     <Compile Include="Controllers\PunktyWyjazduController.cs" />
+    <Compile Include="Controllers\ReservationController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -176,10 +180,15 @@
     <Compile Include="Miejsce.cs">
       <DependentUpon>BiuroPodrozy.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\History.cs" />
+    <Compile Include="Models\Rezerwacja.cs" />
     <Compile Include="Nocleg.cs">
       <DependentUpon>BiuroPodrozy.tt</DependentUpon>
     </Compile>
     <Compile Include="Oferta.cs">
+      <DependentUpon>BiuroPodrozy.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Opinie.cs">
       <DependentUpon>BiuroPodrozy.tt</DependentUpon>
     </Compile>
     <Compile Include="OsobyTowarzyszace.cs">
@@ -223,7 +232,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
@@ -328,6 +336,23 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Account\Logout.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Properties\PublishProfiles\biuro.pubxml" />
+    <Content Include="Views\Noclegi\Index.cshtml" />
+    <Content Include="Views\Noclegi\Details.cshtml" />
+    <Content Include="Views\Noclegi\Create.cshtml" />
+    <Content Include="Views\Noclegi\Edit.cshtml" />
+    <Content Include="Views\Noclegi\Delete.cshtml" />
+    <Content Include="Views\Pokoje\Index.cshtml" />
+    <Content Include="Views\Pokoje\Create.cshtml" />
+    <Content Include="Views\Pokoje\Edit.cshtml" />
+    <Content Include="Views\Pokoje\Delete.cshtml" />
+    <Content Include="Views\Reservation\Reserve.cshtml" />
+    <Content Include="Views\Reservation\Success.cshtml" />
+    <Content Include="Views\Oferty\Opinions.cshtml" />
+    <Content Include="Views\Reservation\Opinion.cshtml" />
+    <Content Include="Views\Reservation\ReservationHistory.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

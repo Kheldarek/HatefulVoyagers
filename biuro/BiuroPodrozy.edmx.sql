@@ -44,9 +44,9 @@
 -- -----------------------------------------------------------
 -- Entity Designer DDL Script for MySQL Server 4.1 and higher
 -- -----------------------------------------------------------
--- Date Created: 01/21/2016 12:10:21
+-- Date Created: 01/21/2016 12:47:01
 
--- Generated from EDMX file: F:\Programowanie\code\HatefulVoyagers\biuro\BiuroPodrozy.edmx
+-- Generated from EDMX file: F:\biuro\biuro\BiuroPodrozy.edmx
 -- Target version: 3.0.0.0
 
 -- --------------------------------------------------
