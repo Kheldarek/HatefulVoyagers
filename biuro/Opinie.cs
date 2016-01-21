@@ -17,6 +17,7 @@ namespace biuro
         public int Id { get; set; }
         public string Opinia { get; set; }
         public int MiejsceID { get; set; }
+        public string Nick { get; set; }
     
         public virtual Miejsce Miejsce { get; set; }
     }

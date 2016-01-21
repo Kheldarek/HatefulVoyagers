@@ -35,7 +35,6 @@ namespace biuro
         public virtual DbSet<Nocleg> NoclegSet { get; set; }
         public virtual DbSet<Pokoje> PokojeSet { get; set; }
         public virtual DbSet<Uzytkownik> UzytkownikSet { get; set; }
-        public virtual DbSet<HistoriaRezerwacji> HistoriaRezerwacjiSet { get; set; }
         public virtual DbSet<Opinie> OpinieSet { get; set; }
     }
 }

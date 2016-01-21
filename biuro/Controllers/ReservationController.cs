@@ -83,8 +83,6 @@ namespace biuro.Controllers
         public ActionResult Opinion(int miejsce_id)
         {
             ViewData["miejsce_id"] = miejsce_id;
-            //Opinie tmp = new Opinie();
-            //tmp.MiejsceID = miejsce_id;
             return View();
         }
         [HttpPost]

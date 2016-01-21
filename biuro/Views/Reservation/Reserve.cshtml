@@ -122,7 +122,7 @@
                 dataType: "json",
                 success: function (data) {
                     for(var i = 0; i < data.length; i++)
-                        $("#hotele").append("<option value=\""+data[i]["ID"]+"\">"+data[i]["Adres"]+"</option>");
+                        $("#hotele").append("<option value=\""+data[i]["ID"]+"\">"+data[i]["Nazwa"]+", "+data[i]["Adres"]+"</option>");
                     $("#hotele").trigger("change");
                 }
             });

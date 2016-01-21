@@ -44,9 +44,9 @@
 -- -----------------------------------------------------------
 -- Entity Designer DDL Script for MySQL Server 4.1 and higher
 -- -----------------------------------------------------------
--- Date Created: 01/20/2016 20:16:41
+-- Date Created: 01/21/2016 12:10:21
 
--- Generated from EDMX file: F:\biuro\biuro\BiuroPodrozy.edmx
+-- Generated from EDMX file: F:\Programowanie\code\HatefulVoyagers\biuro\BiuroPodrozy.edmx
 -- Target version: 3.0.0.0
 
 -- --------------------------------------------------
@@ -79,6 +79,8 @@
 
 --    ALTER TABLE `KlientSet` DROP CONSTRAINT `FK_UzytkownikKlient`;
 
+--    ALTER TABLE `OpinieSet` DROP CONSTRAINT `FK_OpinieMiejsce`;
+
 
 -- --------------------------------------------------
 -- Dropping existing tables
@@ -104,6 +106,8 @@ SET foreign_key_checks = 0;
     DROP TABLE IF EXISTS `PokojeSet`;
 
     DROP TABLE IF EXISTS `UzytkownikSet`;
+
+    DROP TABLE IF EXISTS `OpinieSet`;
 
 SET foreign_key_checks = 1;
 
@@ -204,7 +208,8 @@ CREATE TABLE `NoclegSet`(
 	`ID` int NOT NULL AUTO_INCREMENT UNIQUE, 
 	`Adres` varchar (70) NOT NULL, 
 	`Standard` varchar (150) NOT NULL, 
-	`MiejsceID` int NOT NULL);
+	`MiejsceID` int NOT NULL, 
+	`Nazwa` longtext NOT NULL);
 
 ALTER TABLE `NoclegSet` ADD PRIMARY KEY (ID);
 
@@ -237,21 +242,11 @@ ALTER TABLE `UzytkownikSet` ADD PRIMARY KEY (ID);
 
 
 
-CREATE TABLE `HistoriaRezerwacjiSet`(
-	`Id` int NOT NULL AUTO_INCREMENT UNIQUE, 
-	`RezerwacjeID` int NOT NULL, 
-	`KlientID` int NOT NULL);
-
-ALTER TABLE `HistoriaRezerwacjiSet` ADD PRIMARY KEY (Id);
-
-
-
-
-
 CREATE TABLE `OpinieSet`(
 	`Id` int NOT NULL AUTO_INCREMENT UNIQUE, 
 	`Opinia` longtext NOT NULL, 
-	`MiejsceID` int NOT NULL);
+	`MiejsceID` int NOT NULL, 
+	`Nick` longtext NOT NULL);
 
 ALTER TABLE `OpinieSet` ADD PRIMARY KEY (Id);
 
@@ -461,42 +456,6 @@ ADD CONSTRAINT `FK_OpinieMiejsce`
 CREATE INDEX `IX_FK_OpinieMiejsce`
     ON `OpinieSet`
     (`MiejsceID`);
-
-
-
--- Creating foreign key on `RezerwacjeID` in table 'HistoriaRezerwacjiSet'
-
-ALTER TABLE `HistoriaRezerwacjiSet`
-ADD CONSTRAINT `FK_HistoriaRezerwacjiRezerwacje`
-    FOREIGN KEY (`RezerwacjeID`)
-    REFERENCES `RezerwacjeSet`
-        (`ID`)
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-
-
--- Creating non-clustered index for FOREIGN KEY 'FK_HistoriaRezerwacjiRezerwacje'
-
-CREATE INDEX `IX_FK_HistoriaRezerwacjiRezerwacje`
-    ON `HistoriaRezerwacjiSet`
-    (`RezerwacjeID`);
-
-
-
--- Creating foreign key on `KlientID` in table 'HistoriaRezerwacjiSet'
-
-ALTER TABLE `HistoriaRezerwacjiSet`
-ADD CONSTRAINT `FK_HistoriaRezerwacjiKlient`
-    FOREIGN KEY (`KlientID`)
-    REFERENCES `KlientSet`
-        (`ID`)
-    ON DELETE NO ACTION ON UPDATE NO ACTION;
-
-
--- Creating non-clustered index for FOREIGN KEY 'FK_HistoriaRezerwacjiKlient'
-
-CREATE INDEX `IX_FK_HistoriaRezerwacjiKlient`
-    ON `HistoriaRezerwacjiSet`
-    (`KlientID`);
 
 
 

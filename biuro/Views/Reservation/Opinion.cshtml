@@ -14,7 +14,8 @@
     @Html.Hidden("miejsce_id", null, new { @id = "miejsce_id" })
     @Html.Label("Napisz opinie")    <br />
     @Html.TextAreaFor(model => model.Opinia)    <br />
-
+    @Html.Label("Nick/pseudonim")    <br />
+    @Html.TextAreaFor(model => model.Nick)    <br />
     <input type="submit" value="Wyslij" />
 
     }

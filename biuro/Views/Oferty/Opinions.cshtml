@@ -11,6 +11,7 @@
         @for (int i = 0; i < Model.Count; ++i)
         {
             <did class="oferta">
+               Od: @Html.DisplayFor(model => model.ElementAt(i).Nick) <br />
                 @Html.DisplayFor(model => model.ElementAt(i).Opinia)
             </did>
 
